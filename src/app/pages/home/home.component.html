@@ -10,7 +10,7 @@
                 <a href="#pacotes" class="text-slate-200 hover:text-custom-purple nav-link transition duration-300 font-semibold">Pacotes VIP</a>
             </nav>
             <div class="flex items-center space-x-3">
-                <button id="loginBtn" class="text-sm font-bold py-2 px-4 rounded-full border border-custom-purple text-custom-purple hover:bg-custom-purple/20 transition duration-300 shadow-lg">Entrar</button>
+                <a href="/login" class="text-sm font-bold py-2 px-4 rounded-full border border-custom-purple text-custom-purple hover:bg-custom-purple/20 transition duration-300 shadow-lg no-underline cursor-pointer">Entrar</a>
                 <button id="registerBtn" class="text-sm font-bold py-2 px-5 rounded-full bg-custom-purple text-slate-900 shadow-xl hover:bg-custom-purple/80 transition duration-300 transform hover:scale-105">Cadastre-se</button>
             </div>
         </div>
@@ -111,7 +111,7 @@
 
                 <!-- Destinos Internacionais -->
                 <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-custom-purple">Destinos Internacionais</h3>
-                <div id="international-destinations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mb-16">
+                <div id="international-destinations" class="carousel-scroll mb-16">
 
                     <!-- Destino 1: Tóquio -->
                     <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
@@ -276,8 +276,7 @@
 
                 <!-- Destinos Nacionais -->
                 <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-custom-purple">Destinos Nacionais</h3>
-                <div id="national-destinations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-
+                <div id="national-destinations" class="carousel-scroll">
                     <!-- Destino 1: Rio de Janeiro -->
                     <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
                         <div class="relative">
