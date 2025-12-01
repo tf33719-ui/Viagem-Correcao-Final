@@ -41,17 +41,28 @@
    ESTILOS DOS CARDS
    ========================================= */
 
-/* Garante que o card tenha tamanho fixo e não encolha */
+/* --- ESTILOS DOS CARDS (RESPONSIVO) --- */
+
 .destination-card {
-  min-width: 320px; /* Largura fixa */
-  max-width: 320px;
-  flex-shrink: 0; /* Impede o card de esmagar */
+  /* No Celular: O card ocupa 85% da largura da tela */
+  min-width: 85vw; 
+  max-width: 85vw;
+  
+  flex-shrink: 0;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  background-color: #1e293b; /* Garante fundo escuro */
 }
 
-/* Efeito ao passar o mouse em cima do card */
+/* No Tablet e PC (Telas maiores que 768px): Volta ao tamanho fixo */
+@media (min-width: 768px) {
+  .destination-card {
+    min-width: 320px;
+    max-width: 320px;
+  }
+}
+
 .destination-card:hover {
-  transform: translateY(-8px); /* Sobe um pouquinho */
+  transform: translateY(-8px);
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
 }
 
@@ -174,3 +185,4 @@
   /* scroll-behavior: smooth; <--- REMOVA ESSA LINHA SE ELA EXISTIR AQUI */
   scroll-behavior: auto; /* Deixe auto para o JS controlar */
 }
+
