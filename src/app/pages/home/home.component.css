@@ -1,0 +1,80 @@
+/* =========================================
+   ESTILOS DO CARROSSEL (Novos)
+   ========================================= */
+
+/* Transforma a lista vertical em horizontal com rolagem */
+.carousel-scroll {
+  display: flex;
+  overflow-x: auto; /* Habilita rolagem lateral */
+  gap: 2rem; /* Espaço entre os cards (32px) */
+  padding: 1rem 0.5rem 2rem 0.5rem; /* Espaçamento interno */
+  scroll-behavior: smooth; /* Deixa o deslize suave */
+  
+  /* Mantém a rolagem nativa e rápida no celular */
+  -webkit-overflow-scrolling: touch;
+  
+  /* Configuração para Firefox */
+  scrollbar-width: thin;
+  scrollbar-color: #836FFF #1e293b;
+}
+
+/* =========================================
+   ESTILIZAÇÃO DA BARRA DE ROLAGEM
+   (Deixa a barra roxa e moderna)
+   ========================================= */
+.carousel-scroll::-webkit-scrollbar {
+  height: 8px; /* Altura da barra */
+}
+
+.carousel-scroll::-webkit-scrollbar-track {
+  background: #1e293b; /* Cor do fundo da trilha (escuro) */
+  border-radius: 10px;
+}
+
+.carousel-scroll::-webkit-scrollbar-thumb {
+  background-color: #836FFF; /* Cor Roxa do site */
+  border-radius: 10px;
+  border: 1px solid #1e293b;
+}
+
+/* =========================================
+   ESTILOS DOS CARDS
+   ========================================= */
+
+/* Garante que o card tenha tamanho fixo e não encolha */
+.destination-card {
+  min-width: 320px; /* Largura fixa */
+  max-width: 320px;
+  flex-shrink: 0; /* Impede o card de esmagar */
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito ao passar o mouse em cima do card */
+.destination-card:hover {
+  transform: translateY(-8px); /* Sobe um pouquinho */
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5), 0 8px 10px -6px rgba(0, 0, 0, 0.5);
+}
+
+/* =========================================
+   GARANTIA DE CORES (Safety Net)
+   Caso o Tailwind não reconheça a cor customizada
+   ========================================= */
+.text-custom-purple {
+  color: #836FFF !important;
+}
+
+.bg-custom-purple {
+  background-color: #836FFF !important;
+}
+
+.border-custom-purple {
+  border-color: #836FFF !important;
+}
+
+.hover\:bg-custom-purple\/20:hover {
+  background-color: rgba(131, 111, 255, 0.2) !important;
+}
+
+.hover\:bg-custom-purple\/80:hover {
+  background-color: rgba(131, 111, 255, 0.8) !important;
+}
