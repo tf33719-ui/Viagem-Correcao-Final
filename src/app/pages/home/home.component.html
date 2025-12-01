@@ -1,0 +1,553 @@
+<div class="text-white">
+
+    <!-- Navbar -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 bg-transparent">
+        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-3xl font-extrabold text-custom-purple tracking-wider">TD. <span class="text-slate-100 font-light text-2xl hidden sm:inline">Travel Dreams</span></a>
+            <nav class="hidden md:flex items-center space-x-8">
+                <a href="#planner" class="text-slate-200 hover:text-custom-purple nav-link transition duration-300 font-semibold">Planejador</a>
+                <a href="#destinos" class="text-slate-200 hover:text-custom-purple nav-link transition duration-300 font-semibold">Destinos</a>
+                <a href="#pacotes" class="text-slate-200 hover:text-custom-purple nav-link transition duration-300 font-semibold">Pacotes VIP</a>
+            </nav>
+            <div class="flex items-center space-x-3">
+                <button id="loginBtn" class="text-sm font-bold py-2 px-4 rounded-full border border-custom-purple text-custom-purple hover:bg-custom-purple/20 transition duration-300 shadow-lg">Entrar</button>
+                <button id="registerBtn" class="text-sm font-bold py-2 px-5 rounded-full bg-custom-purple text-slate-900 shadow-xl hover:bg-custom-purple/80 transition duration-300 transform hover:scale-105">Cadastre-se</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero-bg h-screen flex items-center justify-center text-white relative">
+        <div class="absolute inset-0 bg-black/60"></div> 
+        <div class="text-center relative z-10 p-4">
+            <p class="text-xl md:text-2xl text-custom-purple font-light mb-4 tracking-widest uppercase animate-pulse">A sua jornada começa agora</p>
+            <h1 class="text-5xl md:text-8xl font-extrabold mb-8 leading-tight drop-shadow-xl">
+                O Mundo à <span class="text-custom-purple border-b-4 border-custom-purple pb-2 inline-flex items-center space-x-4">
+                    Sua <span id="takeoff-icon" class="text-6xl inline-block transform -rotate-45 shadow-xl">🛫</span>
+                </span>
+            </h1>
+                <div class="bg-slate-800/80 backdrop-blur-sm p-6 rounded-xl shadow-2xl max-w-4xl mx-auto border-t-4 border-custom-purple">
+                <form id="searchForm" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-7 gap-4 items-center">
+                    <input type="text" id="originInput" placeholder="Origem (ex: São Paulo)" class="p-4 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 col-span-1 focus:outline-none focus:ring-4 focus:ring-custom-purple/50 placeholder:text-slate-400">
+                    <input type="text" id="destinationInput" placeholder="Destino" class="p-4 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 col-span-1 focus:outline-none focus:ring-4 focus:ring-custom-purple/50 placeholder:text-slate-400">
+                    <input type="date" id="startDateInput" class="p-4 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 col-span-1 focus:outline-none focus:ring-4 focus:ring-custom-purple/50">
+                    <input type="date" id="endDateInput" class="p-4 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 col-span-1 focus:outline-none focus:ring-4 focus:ring-custom-purple/50">
+                    <input type="number" id="peopleInput" min="1" value="1" placeholder="Pessoas" class="p-4 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 col-span-1 md:col-span-1 focus:outline-none focus:ring-4 focus:ring-custom-purple/50">
+                    <input type="number" id="roomsInput" min="1" value="1" placeholder="Quartos" class="p-4 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 col-span-1 md:col-span-1 focus:outline-none focus:ring-4 focus:ring-custom-purple/50">
+                    <button type="submit" class="w-full bg-custom-purple text-slate-900 font-bold py-4 rounded-lg shadow-lg hover:bg-custom-purple/80 transition duration-300 col-span-1 lg:col-span-1 transform hover:scale-105">
+                        <span class="text-lg">Explorar</span>
+                    </button>
+                </form>
+                </div>
+
+
+            </div>
+        </section>
+
+    <!-- Main Content -->
+    <main>
+
+        <!-- Planejador de Orçamento (Funcionalidade Única) -->
+        <section id="planner" class="py-24 bg-slate-800">
+            <div class="container mx-auto px-6">
+                <p class="text-lg text-custom-purple text-center mb-2 font-semibold">FERRAMENTA EXCLUSIVA</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-12">Planejador de Orçamento e Câmbio</h2>
+                
+                <div class="max-w-4xl mx-auto bg-slate-900 rounded-xl shadow-2xl p-8 border-t-8 border-custom-purple">
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                        <div>
+                            <label for="budgetInput" class="block text-sm font-bold text-slate-300 mb-2">1. Orçamento Total Desejado (BRL)</label>
+                            <input type="number" id="budgetInput" min="1000" placeholder="Ex: 5000" value="5000" class="w-full p-3 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                            <p id="budgetFeedback" class="text-sm mt-1 text-slate-400">R$ 5.000,00</p>
+                        </div>
+                        <div>
+                            <label for="destinationSelect" class="block text-sm font-bold text-slate-300 mb-2">2. Selecione o Destino</label>
+                            <select id="destinationSelect" class="w-full p-3 rounded-lg text-slate-100 bg-slate-700/50 border border-slate-600 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                                <!-- Destinos Internacionais -->
+                                <option value="paris">Paris, França (Custo Médio-Alto)</option>
+                                <option value="tokyo">Tóquio, Japão (Custo Alto)</option>
+                                <option value="maldivas">Ilhas Maldivas (Custo VIP)</option>
+                                <option value="roma" selected>Roma, Itália (Custo Médio)</option>
+                                <!-- Novos Destinos Internacionais -->
+                                <option value="santorini">Santorini, Grécia (Custo Alto)</option>
+                                <option value="buenosaires">Buenos Aires, Argentina (Custo Médio)</option>
+                                <option value="cancun">Cancún, México (Custo Médio-Alto)</option>
+                                <option value="zurique">Zurique, Suíça (Custo VIP)</option>
+                                <!-- Novos Destinos Nacionais -->
+                                <option value="riodejaneiro">Rio de Janeiro, Brasil (Custo Alto)</option>
+                                <option value="fernandodenoronha">Fernando de Noronha, Brasil (Custo VIP)</option>
+                                <option value="gramado">Gramado, Brasil (Custo Médio-Alto)</option>
+                                <option value="portodegalinhas">Porto de Galinhas, PE (Custo Médio)</option>
+                                <option value="maceio">Maceió, AL (Custo Acessível)</option>
+                            </select>
+                            <p id="currencyRate" class="text-sm mt-1 text-custom-purple font-semibold">1 EUR $\approx$ R$ 5.80 (Câmbio Simulado)</p>
+                        </div>
+                    </div>
+
+                    <h3 class="text-2xl font-bold text-slate-100 border-b border-slate-700 pb-2 mb-6">Distribuição Sugerida do Orçamento:</h3>
+                    
+                    <div id="breakdownContainer" class="space-y-4">
+                        <!-- Conteúdo preenchido pelo JavaScript -->
+                    </div>
+
+                    <div class="mt-8 text-center">
+                        <button class="bg-custom-purple text-slate-900 font-bold py-3 px-8 rounded-full shadow-xl hover:bg-custom-purple/80 transition duration-300 transform hover:scale-[1.02]">
+                            Salvar Meu Plano (Em Breve)
+                        </button>
+                        <p class="text-xs text-slate-500 mt-3">Os valores são estimativas baseadas no custo de vida local.</p>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Destinos de Elite -->
+        <section id="destinos" class="py-24 bg-slate-900">
+            <div class="container mx-auto px-6">
+                <p class="text-lg text-custom-purple text-center mb-2 font-semibold">IMPERDÍVEIS</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">Nossos Destinos de Elite</h2>
+
+                <!-- Destinos Internacionais -->
+                <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-custom-purple">Destinos Internacionais</h3>
+                <div id="international-destinations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mb-16">
+
+                    <!-- Destino 1: Tóquio -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1540959733332-eab4deabeeaf?q=80&w=1794&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Toquio+JP'" alt="Tóquio, Japão" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-custom-purple text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">🔥 NOVO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Tóquio, Japão</h3>
+                            <p class="text-slate-400 text-sm mb-4">Onde a tradição milenar encontra o futurismo neon.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 6.200</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 2: Maldivas -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1577017040065-660a1ba8f37a?q=80&w=1935&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Maldivas+VIP'" alt="Ilhas Maldivas" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-red-500 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">ÚLTIMAS VAGAS</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Ilhas Maldivas</h3>
+                            <p class="text-slate-400 text-sm mb-4">O paraíso tropical, com bangalôs sobre águas cristalinas.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 8.900</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 3: Paris -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1502602898657-3e91760c0341?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Paris+FR'" alt="Paris, França" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-slate-500 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">ROMANCE</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Paris, França</h3>
+                            <p class="text-slate-400 text-sm mb-4">A capital global da arte, moda e da alta gastronomia.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 4.500</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 4: Roma -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1527856263669-1581a7b4556a?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Roma+IT'" alt="Roma, Itália" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-yellow-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">HISTÓRIA</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Roma, Itália</h3>
+                            <p class="text-slate-400 text-sm mb-4">Um mergulho épico na história do Império Romano.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 4.800</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 5: Santorini -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1501380675101-cb7af3587ac5?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Santorini+GR'" alt="Santorini, Grécia" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-blue-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">GREGO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Santorini, Grécia</h3>
+                            <p class="text-slate-400 text-sm mb-4">O paraíso das ilhas gregas, com vistas oceânicas e villas brancas.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 6.800</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 6: Buenos Aires -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1505761671935-60b3a7427bad?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Buenos+Aires+AR'" alt="Buenos Aires, Argentina" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-sky-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">TANGO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Buenos Aires, Argentina</h3>
+                            <p class="text-slate-400 text-sm mb-4">A capital da América Latina, rica em cultura e arquitetura europeia.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 3.900</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 7: Cancún -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1606265295068-7b8ad0e9be70?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Cancun+MX'" alt="Cancún, México" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-teal-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">CARIBE</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Cancún, México</h3>
+                            <p class="text-slate-400 text-sm mb-4">Praias de água cristalina, resorts all-inclusive e ruínas maias.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 5.200</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 8: Zurique -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <!--  -->
+                            <img src="https://images.unsplash.com/photo-1635735698593-74d6a36b8d8c?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Zurique+CH'" alt="Zurique, Suíça" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-red-400 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">PRECIOSO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Zurique, Suíça</h3>
+                            <p class="text-slate-400 text-sm mb-4">O paraíso alpinista, com lagos, montanhas e luxo refinado.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 7.500</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Destinos Nacionais -->
+                <h3 class="text-2xl md:text-3xl font-bold text-center mb-8 text-custom-purple">Destinos Nacionais</h3>
+                <div id="national-destinations" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
+
+                    <!-- Destino 1: Rio de Janeiro -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1589710323984-dfc1404c000f?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Rio+Praia+RJ'" alt="Praia do Rio de Janeiro, Brasil" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-green-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">BRASIL</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Rio de Janeiro, Brasil</h3>
+                            <p class="text-slate-400 text-sm mb-4">Cidade Maravilhosa, com praias vibrantes e natureza intensa.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 2.900</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 2: Fernando de Noronha -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1599824606707-16d123b378af?q=80&w=1974&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Noronha+VIP'" alt="Fernando de Noronha, Brasil" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-yellow-400 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">ECO LUXO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Fernando de Noronha</h3>
+                            <p class="text-slate-400 text-sm mb-4">O santuário ecológico com as praias mais lindas do mundo.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 7.500</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 3: Gramado -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1517441221124-780c888d3637?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Gramado+RS'" alt="Gramado, Brasil" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-sky-400 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">INVERNO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Gramado, Brasil</h3>
+                            <p class="text-slate-400 text-sm mb-4">O charme da serra gaúcha com arquitetura europeia e festivais.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 3.800</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 4: Porto de Galinhas -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1616782293527-316828591b64?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Porto+PE'" alt="Porto de Galinhas, Pernambuco" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-yellow-300 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">PRAIAS</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Porto de Galinhas, PE</h3>
+                            <p class="text-slate-400 text-sm mb-4">Famosa pelas piscinas naturais, águas mornas e coqueirais.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 2.500</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 5: Maceió -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1601002344793-7808269d0388?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Maceio+AL'" alt="Maceió, Alagoas" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-cyan-400 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">CARIBE BR</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Maceió, AL</h3>
+                            <p class="text-slate-400 text-sm mb-4">O "Caribe Brasileiro" com mar de cores esmeralda e piscinas naturais.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 2.100</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 6: Porto Seguro, Bahia -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1544593978-95b6c578ba4c?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Porto+Seguro+BA'" alt="Porto Seguro, Bahia" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-orange-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">COLÔNIA</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Porto Seguro, BA</h3>
+                            <p class="text-slate-400 text-sm mb-4">O berço do Brasil, com praias paradisíacas e história colonial.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 3.200</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 7: Chapada Diamantina, Bahia -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1578405197776-410b08d9dfb6?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://placehold.co/400x256/836FFF/ffffff?text=Chapada+Diamantina+BA'" alt="Chapada Diamantina, Bahia" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-emerald-500 text-slate-900 font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">ECOTURISMO</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Chapada Diamantina, BA</h3>
+                            <p class="text-slate-400 text-sm mb-4">Montanhas, cachoeiras e trilhas em um parque nacional deslumbrante.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 4.100</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Destino 8: Jalapão, Tocantins -->
+                    <div class="destination-card bg-slate-800 rounded-xl shadow-2xl overflow-hidden transition-all duration-500 card-hover border-t-4 border-custom-purple/0 hover:border-custom-purple">
+                        <div class="relative">
+                            <img src="https://images.unsplash.com/photo-1534008325921-894dd94c0597?q=80&w=2070&auto=format&fit=crop" onerror="this.src='https://holder.com/400x256/836FFF/ffffff?text=Jalapao+TO'" alt="Jalapão, Tocantins" class="w-full h-64 object-cover transition-opacity duration-500 group-hover:opacity-90">
+                            <div class="absolute top-4 right-4 bg-red-600 text-white font-extrabold text-xs px-3 py-1 rounded-full shadow-lg">FASCIANOLE</div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-2xl font-bold mb-1 text-slate-100">Jalapão, TO</h3>
+                            <p class="text-slate-400 text-sm mb-4">Dunas de areia branca, cachoeiras e lagoas em um cenário único.</p>
+                            <div class="flex justify-between items-center border-t border-slate-700 pt-4">
+                                <div class="flex flex-col">
+                                    <span class="text-xs text-slate-400">A partir de</span>
+                                    <span class="text-3xl font-extrabold text-custom-purple">R$ 3.900</span>
+                                </div>
+                                <a href="#" class="bg-custom-purple text-slate-900 font-bold py-2 px-4 rounded-full transition duration-300 hover:bg-custom-purple/80 text-sm">Ver Detalhes</a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Pacotes VIP (Exemplo) -->
+        <section id="pacotes" class="py-24 bg-slate-800">
+            <div class="container mx-auto px-6">
+                <p class="text-lg text-custom-purple text-center mb-2 font-semibold">ALL-INCLUSIVE</p>
+                <h2 class="text-4xl md:text-5xl font-extrabold text-center mb-16">Pacotes de Experiência VIP</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-10">
+                     <div class="bg-slate-900 rounded-xl shadow-2xl p-8 border-l-4 border-custom-purple hover:bg-slate-700/50 transition duration-300">
+                        <h3 class="text-3xl font-extrabold text-custom-purple mb-2">Amazon: Expedição Ecológica</h3>
+                        <p class="text-slate-400 mb-6">7 dias de imersão de luxo na maior floresta tropical do mundo. Guia particular e sustentabilidade garantida.</p>
+                        <ul class="text-slate-200 space-y-3 mb-6">
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Hospedagem 5 estrelas em Lodge</li>
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Traslados exclusivos</li>
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Pensão completa gourmet</li>
+                        </ul>
+                        <span class="text-4xl font-extrabold text-custom-purple">R$ 10.999</span>
+                        <span class="text-slate-500 ml-2">/pessoa</span>
+                    </div>
+                     <div class="bg-slate-900 rounded-xl shadow-2xl p-8 border-l-4 border-custom-purple hover:bg-slate-700/50 transition duration-300">
+                        <h3 class="text-3xl font-extrabold text-custom-purple mb-2">Grécia: Rota do Egeu</h3>
+                        <p class="text-slate-400 mb-6">10 dias explorando Santorini, Mykonos e Creta em um iate exclusivo. Sua lua de mel ou viagem de luxo ideal.</p>
+                        <ul class="text-slate-200 space-y-3 mb-6">
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Hotel Boutique com piscina privada</li>
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Cruzeiro de 3 dias no Egeu</li>
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Jantar em restaurante Michelin</li>
+                        </ul>
+                        <span class="text-4xl font-extrabold text-custom-purple">R$ 24.500</span>
+                        <span class="text-slate-500 ml-2">/casal</span>
+                    </div>
+                    <div class="bg-slate-900 rounded-xl shadow-2xl p-8 border-l-4 border-custom-purple hover:bg-slate-700/50 transition duration-300">
+                        <h3 class="text-3xl font-extrabold text-custom-purple mb-2">Peru: Trilha Salkantay Plus</h3>
+                        <p class="text-slate-400 mb-6">9 dias de trekking e cultura, incluindo Machu Picchu. Barracas de luxo, chefs de alta montanha e terapeutas.</p>
+                         <ul class="text-slate-200 space-y-3 mb-6">
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Guia particular e equipe de apoio</li>
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Equipamento de trekking premium</li>
+                            <li class="flex items-center text-lg"><span class="text-custom-purple mr-3">✨</span> Voo de primeira classe incluído</li>
+                        </ul>
+                        <span class="text-4xl font-extrabold text-custom-purple">R$ 14.200</span>
+                        <span class="text-slate-500 ml-2">/pessoa</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vantagens -->
+        <section id="vantagens" class="py-24 bg-slate-900">
+            <div class="container mx-auto px-6 text-center">
+                <h2 class="text-4xl md:text-5xl font-extrabold mb-4">Por que Viajar com a TD?</h2>
+                <p class="text-slate-400 mb-16 max-w-3xl mx-auto">Nós não vendemos viagens, criamos obras de arte logísticas com suporte 24/7 e os melhores preços.</p>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                    <div class="p-6 bg-slate-800 rounded-xl shadow-xl transition duration-500 hover:bg-custom-purple/20 transform hover:scale-105">
+                        <span class="text-6xl text-custom-purple mb-4 inline-block transform transition duration-500 hover:rotate-6">✈️</span>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-100">Roteiros Personalizados</h3>
+                        <p class="text-slate-400">Seu desejo é a nossa bússola. Criamos itinerários únicos, focados em suas paixões e estilo de vida.</p>
+                    </div>
+                    <div class="p-6 bg-slate-800 rounded-xl shadow-xl transition duration-500 hover:bg-custom-purple/20 transform hover:scale-105">
+                        <span class="text-6xl text-custom-purple mb-4 inline-block transform transition duration-500 hover:rotate-6">🔒</span>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-100">Segurança e Suporte 24h</h3>
+                        <p class="text-slate-400">Emergências não esperam. Nossa equipe global está sempre online para garantir sua tranquilidade total.</p>
+                    </div>
+                    <div class="p-6 bg-slate-800 rounded-xl shadow-xl transition duration-500 hover:bg-custom-purple/20 transform hover:scale-105">
+                        <span class="text-6xl text-custom-purple mb-4 inline-block transform transition duration-500 hover:rotate-6">💎</span>
+                        <h3 class="text-2xl font-bold mb-2 text-slate-100">Melhor Preço Garantido</h3>
+                        <p class="text-slate-400">Negociamos tarifas exclusivas para lhe oferecer o luxo que você merece pelo preço mais competitivo.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+<!-- Modals (Hidden by default) -->
+    <div id="loginModal" class="fixed inset-0 z-50 items-center justify-center hidden transition-opacity duration-300 opacity-0">
+        <div class="modal-backdrop fixed inset-0"></div>
+        <div class="bg-slate-800 rounded-xl shadow-2xl p-8 w-full max-w-md z-10 m-4 border-t-8 border-custom-purple transform scale-95 transition-transform duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-extrabold text-custom-purple">Bem-vindo de Volta</h2>
+                <button id="closeLoginModal" class="text-slate-500 hover:text-custom-purple text-3xl font-light transition">&times;</button>
+            </div>
+            <form class="space-y-6">
+                <div>
+                    <label for="login-email" class="block text-sm font-medium text-slate-300">E-mail</label>
+                    <input type="email" id="login-email" class="mt-1 block w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg shadow-inner text-slate-100 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                </div>
+                <div>
+                    <label for="login-password" class="block text-sm font-medium text-slate-300">Senha</label>
+                    <input type="password" id="login-password" class="mt-1 block w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg shadow-inner text-slate-100 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                </div>
+                <button type="submit" class="w-full bg-custom-purple text-slate-900 font-bold py-3 rounded-lg shadow-xl hover:bg-custom-purple/80 transition duration-300 transform hover:scale-[1.02]">Entrar na Jornada</button>
+            </form>
+            <p class="text-center text-sm mt-4 text-slate-400">Esqueceu a senha? <a href="#" class="text-custom-purple hover:underline">Recuperar</a></p>
+        </div>
+    </div>
+    
+    <div id="registerModal" class="fixed inset-0 z-50 items-center justify-center hidden transition-opacity duration-300 opacity-0">
+        <div class="modal-backdrop fixed inset-0"></div>
+        <div class="bg-slate-800 rounded-xl shadow-2xl p-8 w-full max-w-md z-10 m-4 border-t-8 border-custom-purple transform scale-95 transition-transform duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-3xl font-extrabold text-custom-purple">Junte-se à Elite de Viajantes</h2>
+                <button id="closeRegisterModal" class="text-slate-500 hover:text-custom-purple text-3xl font-light transition">&times;</button>
+            </div>
+            <form class="space-y-6">
+                <div>
+                    <label for="register-name" class="block text-sm font-medium text-slate-300">Nome Completo</label>
+                    <input type="text" id="register-name" class="mt-1 block w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg shadow-inner text-slate-100 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                </div>
+                <div>
+                    <label for="register-email" class="block text-sm font-medium text-slate-300">E-mail</label>
+                    <input type="email" id="register-email" class="mt-1 block w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg shadow-inner text-slate-100 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                </div>
+                <div>
+                    <label for="register-password" class="block text-sm font-medium text-slate-300">Nova Senha</label>
+                    <input type="password" id="register-password" class="mt-1 block w-full px-4 py-3 bg-slate-700/50 border border-slate-600 rounded-lg shadow-inner text-slate-100 focus:outline-none focus:ring-2 focus:ring-custom-purple/50">
+                </div>
+                <button type="submit" class="w-full bg-custom-purple text-slate-900 font-bold py-3 rounded-lg shadow-xl hover:bg-custom-purple/80 transition duration-300 transform hover:scale-[1.02]">Criar Conta Premium</button>
+            </form>
+            <p class="text-center text-sm mt-4 text-slate-400">Ao se cadastrar, você concorda com nossos <a href="#" class="text-custom-purple hover:underline">Termos de Uso</a>.</p>
+        </div>
+    </div>
+</div>
