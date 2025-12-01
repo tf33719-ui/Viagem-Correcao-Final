@@ -8,7 +8,7 @@
   overflow-x: auto; /* Habilita rolagem lateral */
   gap: 2rem; /* Espaço entre os cards (32px) */
   padding: 1rem 0.5rem 2rem 0.5rem; /* Espaçamento interno */
-  scroll-behavior: smooth; /* Deixa o deslize suave */
+  scroll-behavior: auto; /* Deixa o deslize suave */
   
   /* Mantém a rolagem nativa e rápida no celular */
   -webkit-overflow-scrolling: touch;
@@ -142,7 +142,7 @@
 /* Garante que o toque no celular seja suave */
 .carousel-scroll {
   -webkit-overflow-scrolling: touch;
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 /* Quando clicar e segurar (efeito visual) */
@@ -158,4 +158,19 @@
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.95); }
   to { opacity: 1; transform: scale(1); }
+}
+
+/* --- CORREÇÃO DO TRAVAMENTO --- */
+
+/* Quando estiver arrastando (classe active), desliga o imã e a suavidade */
+.carousel-scroll.active {
+  scroll-snap-type: none; /* Desliga o "imã" */
+  scroll-behavior: auto; /* Desliga a suavidade para responder rápido ao mouse */
+  cursor: grabbing;
+}
+
+/* No estado normal, mantém o comportamento */
+.carousel-scroll {
+  /* scroll-behavior: smooth; <--- REMOVA ESSA LINHA SE ELA EXISTIR AQUI */
+  scroll-behavior: auto; /* Deixe auto para o JS controlar */
 }
