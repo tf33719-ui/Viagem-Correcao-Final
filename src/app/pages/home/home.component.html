@@ -87,21 +87,50 @@
                     <h3 class="text-2xl font-bold text-slate-100 border-b border-slate-700 pb-2 mb-6">Distribuição Sugerida do Orçamento:</h3>
                     
                     <div id="breakdownContainer" class="space-y-4">
-                        <div *ngIf="budgetResult" class="p-4 rounded-lg mt-4 transition-all" [ngClass]="budgetResult.isPossible ? 'bg-green-900/50 border border-green-500' : 'bg-red-900/50 border border-red-500'">
-    <h4 class="text-xl font-bold" [class.text-green-400]="budgetResult.isPossible" [class.text-red-400]="!budgetResult.isPossible">
-        {{ budgetResult.isPossible ? '✅ Orçamento Suficiente!' : '⚠️ Orçamento Apertado' }}
-    </h4>
-    <p class="text-slate-300 mt-2">Custo estimado para 7 dias em {{ budgetResult.destination }}: <strong class="text-white">R$ {{ budgetResult.totalCost }}</strong></p>
-    <p class="text-sm mt-1" [class.text-green-300]="budgetResult.isPossible" [class.text-red-300]="!budgetResult.isPossible">
-        {{ budgetResult.isPossible ? 'Sobra: R$ ' + budgetResult.difference : 'Faltam: R$ ' + budgetResult.difference }}
-    </p>
-</div>
+                        <div *ngIf="!budgetResult" class="text-center text-slate-500 py-4">
+        <p>Preencha os valores acima para ver a mágica acontecer ✨</p>
+    </div>
+
+    <div *ngIf="budgetResult" class="p-6 rounded-xl border-2 transition-all animate-fade-in" 
+         [ngClass]="budgetResult.isPossible ? 'bg-green-900/30 border-green-500' : 'bg-red-900/30 border-red-500'">
+        
+        <div class="flex justify-between items-center mb-4">
+            <h4 class="text-xl font-bold text-white">Resumo da Viagem:</h4>
+            <span class="text-2xl" [innerText]="budgetResult.isPossible ? '✅' : '⚠️'"></span>
+        </div>
+
+        <div class="space-y-3 mb-6">
+            <div class="flex justify-between text-slate-300">
+                <span>Destino:</span>
+                <span class="font-bold text-white">{{ budgetResult.destination }}</span>
+            </div>
+            <div class="flex justify-between text-slate-300">
+                <span>Passagem + Hospedagem (7 dias):</span>
+                <span class="font-bold text-white">R$ {{ budgetResult.totalCost }}</span>
+            </div>
+            <div class="h-px bg-slate-600 my-2"></div>
+            <div class="flex justify-between text-lg font-bold">
+                <span [class.text-green-400]="budgetResult.isPossible" [class.text-red-400]="!budgetResult.isPossible">
+                    {{ budgetResult.isPossible ? 'SOBRA NO ORÇAMENTO:' : 'FALTA NO ORÇAMENTO:' }}
+                </span>
+                <span [class.text-green-400]="budgetResult.isPossible" [class.text-red-400]="!budgetResult.isPossible">
+                    R$ {{ budgetResult.difference }}
+                </span>
+            </div>
+        </div>
+
+        <button *ngIf="budgetResult.isPossible" class="w-full bg-green-600 text-white font-bold py-3 rounded-lg shadow-lg hover:bg-green-500 transition">
+            RESERVAR AGORA COM ESSE ORÇAMENTO
+        </button>
+        
+        <button *ngIf="!budgetResult.isPossible" class="w-full bg-slate-700 text-slate-400 font-bold py-3 rounded-lg cursor-not-allowed">
+            Ajuste o valor para prosseguir
+        </button>
+    </div>
                     </div>
 
                     <div class="mt-8 text-center">
-                        <button class="bg-custom-purple text-slate-900 font-bold py-3 px-8 rounded-full shadow-xl hover:bg-custom-purple/80 transition duration-300 transform hover:scale-[1.02]">
-                            Salvar Meu Plano (Em Breve)
-                        </button>
+                        
                         <p class="text-xs text-slate-500 mt-3">Os valores são estimativas baseadas no custo de vida local.</p>
                     </div>
 
