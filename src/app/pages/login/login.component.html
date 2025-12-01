@@ -1,0 +1,15 @@
+<div class="login-container">
+  <h2>Acesse sua Conta</h2>
+  <p>Entre para ver seus pacotes de viagem</p>
+  
+  <form (submit)="onLogin()">
+    <input type="email" [(ngModel)]="email" name="email" placeholder="Seu E-mail" required>
+    <input type="password" [(ngModel)]="password" name="password" placeholder="Sua Senha" required>
+    
+    <button type="submit">ENTRAR</button>
+  </form>
+  
+  <p style="margin-top: 15px; font-size: 12px; color: #666;">
+    Ainda não tem conta? <a href="#">Cadastre-se</a>
+  </p>
+</div>
